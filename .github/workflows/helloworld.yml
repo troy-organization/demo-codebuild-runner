@@ -8,6 +8,6 @@ jobs:
       - codebuild-demo-codebuild-tf-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Hello world
-        run: echo "Hello World 123"
+        run: echo "Hello World ABC"
       - name: Checkout
         uses: actions/checkout@v4
