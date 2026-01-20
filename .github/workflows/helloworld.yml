@@ -1,8 +1,13 @@
 name: Hello World
-on: [push]
+on:
+  push:
+  workflow_dispatch:
 jobs:
   Hello-World-Job:
     runs-on:
       - codebuild-demo-codebuild-tf-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
-      - run: echo "Hello World 123"
+      - name: Hello world
+        run: echo "Hello World 123"
+      - name: Checkout
+        uses: actions/checkout@v4
