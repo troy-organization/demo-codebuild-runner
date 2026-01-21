@@ -2,6 +2,15 @@ name: Build and Push Demo NodeJS Docker Image to ECR
 
 on:
   push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/docker_build.yml
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/docker_build.yml
   workflow_dispatch:
 
 env:
