@@ -1,0 +1,36 @@
+name: Build and Push Demo NodeJS Docker Image to ECR
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  NODE_MAJOR: 24
+  AWS_REGION: ap-southeast-1
+  ECR_REPOSITORY: demo-ecr
+  AWS_ROLE: AcctFullAdmin
+  HTTP_PROXY: https://proxy.demo.com:3128
+
+jobs:
+  checkout_build:
+    runs-on: codebuild-demo-codebuild-tf-${{ github.run_id }}-${{ github.run_attempt }}
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      
+      - name: Download and unzip awscli
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+          unzip awscliv2.zip
+      
+      - name: Build Docker image
+        run: |
+          docker build \
+          --build-arg NODE_MAJOR=$NODE_MAJOR \
+          --build-arg http_proxy=${HTTP_PROXY} \
+          --build-arg https_proxy=${HTTP_PROXY} \
+          --build-arg HTTP_PROXY=${HTTP_PROXY} \
+          --build-arg HTTPS_PROXY=${HTTP_PROXY} \
+          -t $ECR_REPOSITORY:$NODE_MAJOR.$GITHUB_RUN_ID \
+          . 
