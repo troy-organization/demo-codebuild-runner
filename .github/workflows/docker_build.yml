@@ -6,11 +6,7 @@ on:
       - main
     paths:
       - .github/workflows/docker_build.yml
-  pull_request:
-    branches:
-      - main
-    paths:
-      - .github/workflows/docker_build.yml
+      - Dockerfile
   workflow_dispatch:
 
 env:
