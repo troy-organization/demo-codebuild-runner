@@ -18,7 +18,7 @@ env:
 
 jobs:
   checkout_build:
-    runs-on: codebuild-demo-codebuild-tf-${{ github.run_id }}-${{ github.run_attempt }}
+    runs-on: codebuild-troy-organization-demo-codebuild-tf-prod-ci-${{ github.run_id }}-${{ github.run_attempt }}
 
     steps:
       - name: Checkout source
