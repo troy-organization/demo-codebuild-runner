@@ -23,7 +23,10 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
-      
+
+      - name: Resolve CODEBUILD_ACTION_RUNNER_URL
+        run: echo $CODEBUILD_ACTION_RUNNER_URL
+        
       - name: Download and unzip awscli
         run: |
           curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
